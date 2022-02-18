@@ -9,6 +9,10 @@ var json = {
     'time': 'now'
 }
 
+const rootPath = path.resolve('../../');
+const distPath = path.resolve(rootPath, 'dist', 'index.html');
+console.log(distPath)
+
 const app = express()
 app.use(cors())
 // to use json
@@ -18,10 +22,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.use(express.static('dist'))
+app.use(express.static(path.resolve(rootPath, 'dist')))
 
 app.get('/', function (req, res) {
-    res.sendFile('file:///D:/pablo%20D/dewelopment/lern%20js/webpack/artickles-sentencise/dist/index.html')
+    res.sendFile(distPath)
 })
 
 // designates what port the app will listen to for incoming requests
