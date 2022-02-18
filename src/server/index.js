@@ -2,12 +2,10 @@ var path = require('path')
 const express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+const dotenv = require('dotenv');
+dotenv.config();
 
-var json = {
-    'title': 'test json response',
-    'message': 'this is a message',
-    'time': 'now'
-}
+console.log(`Your API key is ${process.env.API_KEY}`);
 
 const rootPath = path.resolve('../../');
 const distPath = path.resolve(rootPath, 'dist', 'index.html');
