@@ -1,15 +1,19 @@
-var path = require('path')
-const express = require('express')
-var bodyParser = require('body-parser')
-var cors = require('cors')
 const dotenv = require('dotenv');
-dotenv.config();
 
-console.log(`Your API key is ${process.env.API_KEY}`);
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const rootPath = path.resolve('../../');
+const result = dotenv.config({ path: path.resolve(rootPath, '.env')})
+
+console.log(result.parsed)
+console.log(`Your API key is ${process.env.SECRET_KEY}`);
+
+// console.log(`Your API key is ${process.env.API_KEY}`);
 const distPath = path.resolve(rootPath, 'dist', 'index.html');
-console.log(distPath)
+
 
 const app = express()
 app.use(cors())
