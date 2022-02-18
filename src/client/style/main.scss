@@ -1,0 +1,21 @@
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    .section__head h1 {
+        color: rgb(231, 13, 24);
+    }
+}
+
+.footer {
+    h2 {
+        color: rgb(25, 29, 29);
+    }
+
+    &:hover {
+        background-color: black;
+    }
+}
+
