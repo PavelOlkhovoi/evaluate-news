@@ -29,6 +29,13 @@ app.use(express.static(path.resolve(rootPath, 'dist')))
 app.get('/', function (req, res) {
     res.sendFile(distPath)
 })
+const test = {
+  hi: process.env.API_KEY
+}
+app.get('/key', (req, res)=> {
+    console.log("Handle key");
+    res.json(test);
+})
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
