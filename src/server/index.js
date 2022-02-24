@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
     res.sendFile(distPath)
 })
 const test = {
-  hi: process.env.API_KEY
+  key: process.env.API_KEY
 }
 app.get('/key', (req, res)=> {
     console.log("Handle key");

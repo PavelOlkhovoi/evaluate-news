@@ -1,17 +1,20 @@
 function formHandler(event){
     event.preventDefault();
-    let link = document.getElementById('link');
+    let linkInput = document.getElementById('link');
+    let link = linkInput.value;
+
     let errorBox = document.querySelector('.main__error');
-    let testPattern = formValidate(link.value);
- 
+    let testPattern = formValidate(linkInput.value);
+    console.log(link)
     if(testPattern) {
         errorBox.innerHTML = ` `;
-        getKey().then(res=> {
-            console.log(res);
+        const key = getKey().then(res => res)
+        // Fetch data to api.meaningcloud.com
+        .then(res=> {
             const test = fetchData('https://api.meaningcloud.com/sentiment-2.1', {
-                key:"a1ac2e770759b299cec39c7489ff5da4&lang=en&ur",
+                key: res.key,
                 lang:"en",
-                url:"https://www.theguardian.com/world/2022/feb/18/pro-russian-separatist-order-mass-evacuation-eastern-ukraine-fear-moscow-seeking-create-pretext-invasion"
+                url:link
             });
         });
         return true;
@@ -22,9 +25,9 @@ function formHandler(event){
     
 }
 
-function formValidate(link){
+function formValidate(linkInput){
     // Simple regexp to check the first part of the link
-    let test = /^https{0,1}:\/\/+\w*\.+.*/.test(link);
+    let test = /^https{0,1}:\/\/+\w*\.+.*/.test(linkInput);
     console.log('Status', test);
     return test;
 }
@@ -43,13 +46,19 @@ async function fetchData(url, data={}){
             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"  
           }, 
           body: `key=${data.key}&lang=${data.lang}&url=${data.url}`,
-        // body: "key=a1ac2e770759b299cec39c7489ff5da4&lang=en&url=https://www.theguardian.com/world/2022/feb/18/pro-russian-separatist-order-mass-evacuation-eastern-ukraine-fear-moscow-seeking-create-pretext-invasion",
     }).then(response => response.json())
-    //result.agreement
-    //result.subjectivity
-    //result.confidence
-    //result.irony
-    .then(result => console.log(result))
+    .then(result => {
+        let resultObj = {
+            agreement: result.agreement,
+            subjectivity: result.subjectivity,
+            confidence: result.confidence,
+            irony: result.irony
+        };
+        for (let key in resultObj){
+            console.log(key);
+            document.getElementById(key).innerHTML = `${key}: ${resultObj[key]}`;
+        }
+    })
     .catch(error => console.log('error', error));
 }
 
