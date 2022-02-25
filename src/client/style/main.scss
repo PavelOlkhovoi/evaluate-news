@@ -18,15 +18,12 @@ em {
     text-align: center;
     max-width: 980px;
     margin: 0 auto;
-    @media screen and (min-width: $layout-phone) {
-        background-color: blue;
-    }
 }
 
 /* HEAD SECTION */
 
 .head__title {
-    color: rgb(123, 27, 179);
+    color: $layout-phone;
     padding-top: 6vh;
     padding-bottom: 3vh;
     font-size: 36px;
@@ -43,12 +40,18 @@ em {
     &__form {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     &__input{
         padding: 26px 0;
         text-align: center;
         margin-bottom: 14px;
+        padding: 16px;
+        @media screen and (min-width: $layout-phone) {
+            width: 400px;
+        }
     }
 
     &__btn {
@@ -59,6 +62,12 @@ em {
 }
 
 /* RESPONSE SECTION */
+.reply {
+    display: none;
+}
+.reply.active {
+    display: block;
+}
 
 .reply__title {
     font-size: 24px;

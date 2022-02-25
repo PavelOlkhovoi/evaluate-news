@@ -11,6 +11,7 @@ function formHandler(event){
         const key = getKey().then(res => res)
         // Fetch data to api.meaningcloud.com
         .then(res=> {
+            hideResult();
             const test = fetchData('https://api.meaningcloud.com/sentiment-2.1', {
                 key: res.key,
                 lang:"en",
@@ -48,19 +49,30 @@ async function fetchData(url, data={}){
           body: `key=${data.key}&lang=${data.lang}&url=${data.url}`,
     }).then(response => response.json())
     .then(result => {
+        showResult();
         let resultObj = {
             agreement: result.agreement,
             subjectivity: result.subjectivity,
             confidence: result.confidence,
             irony: result.irony
         };
-        console.log((resultObj))
-        for (let key in resultObj){
-            console.log(key);
-            document.getElementById(key).innerHTML = `${key}: ${resultObj[key]}`;
-        }
+        renderData(resultObj);
     })
     .catch(error => console.log('error', error));
 }
 
-export { formHandler, formValidate }
+function hideResult(){
+    document.querySelector('.reply').classList.remove('active');
+}
+
+function showResult(){
+    document.querySelector('.reply').classList.add('active');
+}
+
+function renderData(resultObj){
+    for (let key in resultObj){
+        document.getElementById(key).innerHTML = `${key}: <em>${resultObj[key]}</em>`;
+    }
+}
+
+export { formHandler, formValidate, hideResult }
