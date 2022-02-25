@@ -1,24 +1,75 @@
+@import './base';
+
+body {
+    background-color: $colorBlue;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+em {
+    font-weight: 900;
+}
+
 .wrapper {
+    padding: 15px;
+    text-align: center;
     max-width: 980px;
     margin: 0 auto;
-}
-
-.wrapper {
-    .section__head h1 {
-        color: rgb(231, 13, 24);
+    @media screen and (min-width: $layout-phone) {
+        background-color: blue;
     }
 }
 
-.footer {
-    h2 {
-        color: rgb(25, 29, 29);
+/* HEAD SECTION */
+
+.head__title {
+    color: rgb(123, 27, 179);
+    padding-top: 6vh;
+    padding-bottom: 3vh;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.head__text {
+    padding: 3vh 0;
+}
+
+/* FORM SECTION */
+
+.main {
+    &__form {
+        display: flex;
+        flex-direction: column;
     }
 
-    // &:hover {
-    //     background-color: black;
-    // }
+    &__input{
+        padding: 26px 0;
+        text-align: center;
+        margin-bottom: 14px;
+    }
+
+    &__btn {
+        @extend .main__input;
+        color: white;
+        background-color: $black;
+    }
+}
+
+/* RESPONSE SECTION */
+
+.reply__title {
+    font-size: 24px;
+    font-weight: 900;
+    padding: 3vh 0;
 }
 
 .main__error {
     color:rgb(231, 13, 24)
+}
+
+.reply__message {
+    line-height: 1.4;
 }

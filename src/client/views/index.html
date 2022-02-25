@@ -11,33 +11,32 @@
         <div class="container">
             <head class="head">
                 <h1 class="head__title">
-                    Evaluite articles demo
+                    Evaluate a news article
                 </h1>
                 <p class="head__text">
-                    Just put hier link and get sencative feedback
+                    Check an article with Natural Language Processing. Copy a link to an interesting for your article and put it below 
                 </p>
             </head>
             <main class="main">
                 <form action="/test" method="get" class="main__form">
                     <label for="link"></label>
                     <p class="main__error"></p>
-                    <input type="text" id="link" placeholder="Paste hier you link">
-                    <button type="submit" class="main__btn btn">Evaluite</button>
+                    <input type="text" id="link" placeholder="Past link here" class="main__input">
+                    <button type="submit" class="main__btn btn">Get started</button>
                 </form>
-                <hr>
                 <section class="replay">
                     <div class="reply__head">
                         <h2 class="reply__title">
-                            Response
+                            Show results
                         </h2>
                     </div>
                     <div class="reply__body">
                         <div class="reply__error"></div>
                         <ul class="reply__positive">
-                            <li class="reply__message" id="agreement"></li>
-                            <li class="reply__message" id="subjectivity"></li>
-                            <li class="reply__message" id="confidence"></li>
-                            <li class="reply__message" id="irony"></li>
+                            <li class="reply__message" id="agreement">Agreement: <em>Agreement</em></li>
+                            <li class="reply__message" id="subjectivity">Subjectivity: <em>Subjectivity</em></li>
+                            <li class="reply__message" id="confidence">Confidence: <em>Confidence</em></li>
+                            <li class="reply__message" id="irony">Irony: <em>Irony</em></li>
                         </ul>
                     </div>
                 </section>

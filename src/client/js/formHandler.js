@@ -2,12 +2,12 @@ function formHandler(event){
     event.preventDefault();
     let linkInput = document.getElementById('link');
     let link = linkInput.value;
-
     let errorBox = document.querySelector('.main__error');
     let testPattern = formValidate(linkInput.value);
-    console.log(link)
+
     if(testPattern) {
         errorBox.innerHTML = ` `;
+        // Get key for API reguest from server
         const key = getKey().then(res => res)
         // Fetch data to api.meaningcloud.com
         .then(res=> {
@@ -54,6 +54,7 @@ async function fetchData(url, data={}){
             confidence: result.confidence,
             irony: result.irony
         };
+        console.log((resultObj))
         for (let key in resultObj){
             console.log(key);
             document.getElementById(key).innerHTML = `${key}: ${resultObj[key]}`;
